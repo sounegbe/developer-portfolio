@@ -13,7 +13,59 @@ body {
 ::selection { background: #5eead4; color: #082f2a; }
 .section-kicker { color: #5eead4; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; }
 
+/* Decorative animation sits behind all interactive content. */
+.ambient-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: #080e19;
+}
+.ambient-background__grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(94,234,212,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(94,234,212,.055) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+.ambient-background__orb {
+  position: absolute;
+  width: min(65vw, 680px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: .22;
+  animation: ambient-drift 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.ambient-background__orb--one { top: -25%; right: -12%; background: #0d9488; }
+.ambient-background__orb--two { top: 40%; left: -25%; background: #2563eb; animation-delay: -9s; }
+.ambient-background__orb--three { bottom: -35%; right: -20%; background: #0e7490; animation-delay: -15s; }
+@keyframes ambient-drift { from { transform: translate3d(-5%, -4%, 0) scale(.95); } to { transform: translate3d(9%, 12%, 0) scale(1.12); } }
+
+/* Desktop pointer effect, never enabled for touch or reduced-motion users. */
+@media (pointer: fine) and (hover: hover) and (prefers-reduced-motion: no-preference) {
+  body, a, button { cursor: none; }
+}
+.custom-cursor { position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; }
+.custom-cursor__ring {
+  position: absolute;
+  left: -19px;
+  top: -19px;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid rgba(94,234,212,.85);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(45,212,191,.22);
+  transition: width .18s, height .18s, left .18s, top .18s, background-color .18s;
+}
+.custom-cursor__dot { position: absolute; top: -3px; left: -3px; width: 6px; height: 6px; border-radius: 50%; background: #99f6e4; }
+.custom-cursor--hover .custom-cursor__ring { width: 56px; height: 56px; left: -28px; top: -28px; background: rgba(45,212,191,.1); }
+.custom-cursor--pressed .custom-cursor__ring { width: 28px; height: 28px; left: -14px; top: -14px; }
+
 @media (prefers-reduced-motion: reduce) {
   :root { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  .ambient-background__orb { animation: none; }
 }
