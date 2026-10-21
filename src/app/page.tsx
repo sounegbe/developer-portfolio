@@ -1,9 +1,11 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <main className="min-h-screen px-6 py-20 sm:px-12 lg:px-24">
       <div className="mx-auto max-w-5xl">
         <header className="flex items-center justify-between gap-4">
-          <a href="/" className="text-lg font-bold tracking-tight">sounegbe<span className="text-cyan-400">.</span></a>
+          <Link href="/" className="text-lg font-bold tracking-tight">sounegbe<span className="text-cyan-400">.</span></Link>
           <a href="https://github.com/sounegbe" target="_blank" rel="noopener noreferrer" className="rounded-full border border-slate-600 px-4 py-2 text-sm hover:border-cyan-400">GitHub ↗</a>
         </header>
         <section className="py-28 sm:py-36">
