@@ -12,7 +12,6 @@ export default function AnimatedBackground() {
         loop
         playsInline
         preload="metadata"
-        poster="/video-poster.svg"
       >
         <source src="/videos/ai-background.mp4" type="video/mp4" />
       </video>
