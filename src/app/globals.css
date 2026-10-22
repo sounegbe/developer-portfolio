@@ -88,3 +88,10 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .ambient-background__video { display: none; }
 }
+
+/* Clear keyboard focus for links and controls, including the custom-cursor layout. */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid #5eead4;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
