@@ -7,7 +7,7 @@ const projects = [
     category: "AI Research",
     description: "An experimental AI research project exploring structured hypotheses, experiments, observations, and model improvement.",
     stack: ["Python", "Research", "AI"],
-    href: "https://github.com/sounegbe/NOVA",
+    href: null,
   },
   {
     number: "02",
@@ -109,7 +109,11 @@ export default function Home() {
                 <div className="mt-8 flex flex-wrap gap-2">
                   {project.stack.map((item) => <span key={item} className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300">{item}</span>)}
                 </div>
-                <a href={project.href} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 self-start text-sm font-bold text-teal-300 hover:text-teal-200">View repository <span aria-hidden="true">↗</span><span className="sr-only">for {project.title}</span></a>
+                {project.href ? (
+                  <a href={project.href} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 self-start text-sm font-bold text-teal-300 hover:text-teal-200">View repository <span aria-hidden="true">↗</span><span className="sr-only">for {project.title}</span></a>
+                ) : (
+                  <span className="mt-8 inline-flex items-center gap-2 self-start text-sm font-semibold text-slate-400" aria-label={`${project.title} source code is private`}>Private source code · Portfolio showcase</span>
+                )}
               </article>
             ))}
           </div>
